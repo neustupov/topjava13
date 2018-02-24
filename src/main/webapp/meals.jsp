@@ -10,9 +10,10 @@
 <table border=1>
     <thead>
     <tr>
+        <th>Id</th>
         <th>Description</th>
         <th>Calories</th>
-        <th>DataTime</th>
+        <th>DateTime</th>
     </tr>
     </thead>
     <tbody>
@@ -22,13 +23,17 @@
             <c:set var="color" value="green"/>
         </c:if>
         <tr style="color: ${color}">
+            <td><c:out value="${meal.id}"/></td>
             <td><c:out value="${meal.description}"/></td>
             <td><c:out value="${meal.calories}"/></td>
-            <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd"/></td>
+            <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+            <td><a href="meals?action=edit&mealId=<c:out value="${meal.id}"/>">Update</a></td>
+            <td><a href="meals?action=delete&mealId=<c:out value="${meal.id}"/>">Delete</a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+<p><a href="meals?action=insert">Add Meal</a></p>
 <h3><a href="index.html">Home</a></h3>
 </body>
 </html>
