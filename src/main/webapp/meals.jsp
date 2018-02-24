@@ -21,10 +21,10 @@
         <c:if test="${!meal.exceed}">
             <c:set var="color" value="green"/>
         </c:if>
-        <tr>
-            <td style="color: ${color}"><c:out value="${meal.description}"/></td>
-            <td style="color: ${color}"><c:out value="${meal.calories}"/></td>
-            <td style="color: ${color}"><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd"/></td>
+        <tr style="color: ${color}">
+            <td><c:out value="${meal.description}"/></td>
+            <td><c:out value="${meal.calories}"/></td>
+            <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd"/></td>
         </tr>
     </c:forEach>
     </tbody>
