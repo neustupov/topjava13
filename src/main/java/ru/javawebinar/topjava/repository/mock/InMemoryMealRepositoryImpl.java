@@ -7,7 +7,8 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Map;
@@ -58,17 +59,20 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
 
     @Override
     public Collection<Meal> getAll(int userId) {
-        log.info("getAll");
-        Map<Integer, Meal> result = repository.entrySet().stream()
-                .sorted(Comparator.comparing(m -> m.getValue().getTime()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (m1, m2) -> m1,
-                        ConcurrentHashMap::new));
-        return result.values();
+        log.info("getAll - sort by Time");
+        return repository.values()
+                .stream()
+                .filter(x -> x.getUserId() == userId)
+                .sorted(Comparator.comparing(Meal::getDateTime))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Collection<Meal> getAllWithTimeAndDate(LocalDateTime startDate, LocalDateTime startTime, LocalDateTime endDate, LocalDateTime endTime) {
-        return null;
+    public Collection<Meal> getAllWithTimeAndDate(LocalTime startTime, LocalTime endTime,
+                                                  LocalDate startDate, LocalDate endDate,
+                                                  int idUser) {
+        return getAll(idUser).stream().filter(x -> x.getTime().isAfter(startTime) && x.getTime().isBefore(endTime)
+                && x.getDate().isAfter(startDate.minusDays(1)) && x.getDate().isBefore(endDate.plusDays(1))).collect(Collectors.toList());
     }
 }
 

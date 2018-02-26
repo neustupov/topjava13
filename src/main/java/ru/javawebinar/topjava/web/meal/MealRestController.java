@@ -9,6 +9,8 @@ import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.to.MealWithExceed;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 
 
@@ -39,5 +41,10 @@ public class MealRestController {
     public Collection<MealWithExceed> getAll(int userId){
         log.info("getAll {}");
         return service.getAll(userId);
+    }
+
+    public Collection<Meal> getAllWithTimeAndDate(LocalTime startTime, LocalTime endTime,
+                                                  LocalDate startDate, LocalDate endDate, int idUser) {
+        return service.getAllWithTimeAndDate(startTime, endTime, startDate, endDate, idUser);
     }
 }
