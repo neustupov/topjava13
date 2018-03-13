@@ -1,6 +1,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4517c97a38b045099dec0ce618e69a8b)](https://www.codacy.com/app/neustupov/topjava13?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=neustupov/topjava13&amp;utm_campaign=Badge_Grade)
 
-https://travis-ci.org/neustupov/topjava13.svg?branch=master
+[![Build Status](https://travis-ci.org/neustupov/topjava13.svg?branch=master)](https://travis-ci.org/neustupov/topjava13)
 
 Java Enterprise Online Project 
 ===============================
