@@ -3,22 +3,44 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
-        <a href="meals" class="navbar-brand"><spring:message code="app.title"/></a>
+        <a href="meals" class="navbar-brand"><img src="resources/images/icon-meal.png"><spring:message code="app.title"/></a>
 
-        <div class="collapse navbar-collapse">
-            <form:form class="navbar-form navbar-right" action="logout" method="post">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
                 <sec:authorize access="isAuthenticated()">
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <a class="btn btn-info" href="users"><spring:message code="user.title"/></a>
-                    </sec:authorize>
-                    <a class="btn btn-info" href="profile">${userTo.name} <spring:message code="app.profile"/></a>
-                    <button class="btn btn-primary" type="submit">
-                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                    </button>
+                    <li class="nav-item">
+                        <form:form class="form-inline my-2" action="logout" method="post">
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <a class="btn btn-info mr-1" href="users"><spring:message code="user.title"/></a>
+                            </sec:authorize>
+                            <a class="btn btn-info mr-1" href="profile">${userTo.name} <spring:message
+                                    code="app.profile"/></a>
+                            <button class="btn btn-primary" type="submit">
+                                <span class="fa fa-sign-out"></span>
+                            </button>
+                        </form:form>
+                    </li>
                 </sec:authorize>
-            </form:form>
+                <sec:authorize access="isAnonymous()">
+                    <li class="nav-item">
+                        <form:form class="form-inline my-2" action="spring_security_check" method="post">
+                            <input class="form-control mr-1" type="text" placeholder="Email" name="username">
+                            <input class="form-control mr-1" type="password" placeholder="Password" name="password">
+                            <button class="btn btn-success" type="submit">
+                                <span class="fa fa-sign-in"></span>
+                            </button>
+                        </form:form>
+                    </li>
+                </sec:authorize>
+            </ul>
         </div>
     </div>
-</div>
+    </div>
+</nav>

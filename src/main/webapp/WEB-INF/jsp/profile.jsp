@@ -9,34 +9,29 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<div class="jumbotron">
+<div class="jumbotron pt-4">
     <div class="container">
         <%--@elvariable id="userTo" type="ru.javawebinar.topjava.to.UserTo"--%>
-        <h2>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h2>
+        <div class="row">
+            <div class="col-5 offset-3">
+                <h3>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h3>
+                <form:form modelAttribute="userTo" class="form-horizontal" method="post" action="${register ? 'register' : 'profile'}"
+                           charset="utf-8" accept-charset="UTF-8">
 
-        <form:form modelAttribute="userTo" class="form-horizontal" method="post" action="${register ? 'register' : 'profile'}"
-                   charset="utf-8" accept-charset="UTF-8">
+                    <topjava:inputField labelCode="user.name" name="name"/>
+                    <topjava:inputField labelCode="user.email" name="email"/>
+                    <topjava:inputField labelCode="user.password" name="password" inputType="password"/>
+                    <topjava:inputField labelCode="user.caloriesPerDay" name="caloriesPerDay" inputType="number"/>
 
-            <spring:message code="user.name" var="userName"/>
-            <topjava:inputField label='${userName}' name="name"/>
-
-            <spring:message code="user.email" var="userEmail"/>
-            <topjava:inputField label='${userEmail}' name="email"/>
-
-            <spring:message code="user.password" var="userPassword"/>
-            <topjava:inputField label='${userPassword}' name="password" inputType="password"/>
-
-            <spring:message code="user.caloriesPerDay" var="caloriesPerDay"/>
-            <topjava:inputField label='${caloriesPerDay}' name="caloriesPerDay" inputType="number"/>
-
-            <div class="form-group">
-                <div class="col-xs-offset-2 col-xs-10">
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    </button>
-                </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-check"></span>
+                            <spring:message code="common.save"/>
+                        </button>
+                    </div>
+                </form:form>
             </div>
-        </form:form>
+        </div>
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>

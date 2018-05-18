@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<div class="footer">
+<footer class="footer">
     <div class="container">
-        <spring:message code="app.footer"/>
+        <span class="text-muted"><spring:message code="app.footer"/></span>
     </div>
-</div>
+</footer>
