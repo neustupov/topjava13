@@ -79,7 +79,7 @@ abstract public class AbstractControllerTest {
     }
 
     protected String getMessage(String code) {
-        return messageUtil.getMessage(code, Locale.ENGLISH);
+        return messageUtil.getMessage(code, MessageUtil.RU_LOCALE);
     }
 
     public ResultMatcher errorType(ErrorType type) {
